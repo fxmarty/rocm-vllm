@@ -48,7 +48,6 @@ void fused_add_rms_norm(
   float epsilon);
 
 void rotary_embedding(
-  torch::Tensor& positions,
   torch::Tensor& query,
   torch::Tensor& key,
   int head_size,
