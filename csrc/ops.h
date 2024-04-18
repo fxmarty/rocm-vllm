@@ -52,7 +52,8 @@ void rotary_embedding(
   torch::Tensor& query,
   torch::Tensor& key,
   int head_size,
-  torch::Tensor& cos_sin_cache,
+  torch::Tensor& cos_cache,
+  torch::Tensor& sin_cache,
   bool is_neox);
 
 void batched_rotary_embedding(

@@ -10,13 +10,13 @@ namespace vllm {
 template<typename scalar_t, bool IS_NEOX>
 inline __device__ void apply_token_rotary_embedding(
   scalar_t* __restrict__ arr,
-  const scalar_t* __restrict__ cos_ptr,
-  const scalar_t* __restrict__ sin_ptr,
+  const float* __restrict__ cos_ptr,
+  const float* __restrict__ sin_ptr,
   int rot_offset,
   int embed_dim)
 {
   int x_index, y_index;
-  scalar_t cos, sin;
+  float cos, sin;
   if (IS_NEOX) {
     // GPT-NeoX style rotary embedding.
     x_index = rot_offset;
@@ -41,8 +41,8 @@ template<typename scalar_t, bool IS_NEOX>
 inline __device__ void apply_rotary_embedding(
   scalar_t* __restrict__ query,                 // [batch_size, seq_len, num_heads, head_size] or [num_tokens, num_heads, head_size]
   scalar_t* __restrict__ key,                   // [batch_size, seq_len, num_kv_heads, head_size] or [num_tokens, num_kv_heads, head_size]
-  const scalar_t* __restrict__ cos_ptr,   // [max_position, 1, rot_dim]
-  const scalar_t* __restrict__ sin_ptr,   // [max_position, 1, rot_dim]
+  const float* __restrict__ cos_ptr,   // [max_position, 1, rot_dim]
+  const float* __restrict__ sin_ptr,   // [max_position, 1, rot_dim]
   const int head_size,
   const int num_heads,
   const int num_kv_heads,
@@ -74,8 +74,8 @@ template<typename scalar_t, bool IS_NEOX>
 __global__ void rotary_embedding_kernel(
   scalar_t* __restrict__ query,                 // [batch_size, seq_len, num_heads, head_size] or [num_tokens, num_heads, head_size]
   scalar_t* __restrict__ key,                   // [batch_size, seq_len, num_kv_heads, head_size] or [num_tokens, num_kv_heads, head_size]
-  const scalar_t* __restrict__ cos_cache,   // [max_position, 1, rot_dim]
-  const scalar_t* __restrict__ sin_cache,   // [max_position, 1, rot_dim]
+  const float* __restrict__ cos_cache,   // [max_position, 1, rot_dim]
+  const float* __restrict__ sin_cache,   // [max_position, 1, rot_dim]
   const int rot_dim,
   const int64_t query_stride,
   const int64_t key_stride,
