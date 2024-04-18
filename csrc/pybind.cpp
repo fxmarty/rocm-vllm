@@ -76,24 +76,24 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
 //     &moe_align_block_size,
 //     "Aligning the number of tokens to be processed by each expert such that it is divisible by the block size.");
 
-//   // Cache ops
-//   pybind11::module cache_ops = m.def_submodule("cache_ops", "vLLM cache ops");
-//   cache_ops.def(
-//     "swap_blocks",
-//     &swap_blocks,
-//     "Swap in (out) the cache blocks from src to dst");
-//   cache_ops.def(
-//     "copy_blocks",
-//     &copy_blocks,
-//     "Copy the cache blocks from src to dst");
-//   cache_ops.def(
-//     "reshape_and_cache",
-//     &reshape_and_cache,
-//     "Reshape the key and value tensors and cache them");
-//   cache_ops.def(
-//     "convert_fp8",
-//     &convert_fp8,
-//     "Convert the key and value cache to fp8 data type");
+  // Cache ops
+  pybind11::module cache_ops = m.def_submodule("cache_ops", "vLLM cache ops");
+  cache_ops.def(
+    "swap_blocks",
+    &swap_blocks,
+    "Swap in (out) the cache blocks from src to dst");
+  cache_ops.def(
+    "copy_blocks",
+    &copy_blocks,
+    "Copy the cache blocks from src to dst");
+  cache_ops.def(
+    "reshape_and_cache",
+    &reshape_and_cache,
+    "Reshape the key and value tensors and cache them");
+  cache_ops.def(
+    "convert_fp8",
+    &convert_fp8,
+    "Convert the key and value cache to fp8 data type");
 
 //   // Cuda utils
 //   pybind11::module cuda_utils = m.def_submodule("cuda_utils", "vLLM cuda utils");
