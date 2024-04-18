@@ -163,12 +163,12 @@ set(VLLM_EXT_SRC
   "csrc/cache_kernels.cu"
   "csrc/attention/attention_kernels.cu"
   "csrc/pos_encoding_kernels.cu"
-  "csrc/activation_kernels.cu"
+#  "csrc/activation_kernels.cu"
   "csrc/layernorm_kernels.cu"
-  "csrc/quantization/squeezellm/quant_cuda_kernel.cu"
-  "csrc/quantization/gptq/q_gemm.cu"
+#  "csrc/quantization/squeezellm/quant_cuda_kernel.cu"
+#  "csrc/quantization/gptq/q_gemm.cu"
   "csrc/cuda_utils_kernels.cu"
-  "csrc/moe_align_block_size_kernels.cu"
+#  "csrc/moe_align_block_size_kernels.cu"
   "csrc/pybind.cpp")
 
 if(VLLM_GPU_LANG STREQUAL "CUDA")
