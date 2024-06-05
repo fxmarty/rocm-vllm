@@ -18,10 +18,10 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
     "PagedAttention V2.");
 
   // Activation ops
-  // ops.def(
-  //   "silu_and_mul",
-  //   &silu_and_mul,
-  //   "Activation function used in SwiGLU.");
+  ops.def(
+    "silu_and_mul",
+    &silu_and_mul,
+    "Activation function used in SwiGLU.");
   // ops.def(
   //   "gelu_and_mul",
   //   &gelu_and_mul,
